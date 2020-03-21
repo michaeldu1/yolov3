@@ -8,6 +8,7 @@ import test  # import test.py to get mAP after each epoch
 from models import *
 from utils.datasets import *
 from utils.utils import *
+from utils import utils; utils.plot_results()
 
 mixed_precision = True
 try:  # Mixed precision training https://github.com/NVIDIA/apex
@@ -379,8 +380,7 @@ def train():
             os.system('gsutil cp %s gs://%s/weights' % (wdir + flast, opt.bucket))
             # os.system('gsutil cp %s gs://%s/weights' % (wdir + fbest, opt.bucket))
 
-    if not opt.evolve:
-        plot_results()  # save as results.png
+    plot_results()  # save as results.png
     print('%g epochs completed in %.3f hours.\n' % (epoch - start_epoch + 1, (time.time() - t0) / 3600))
     dist.destroy_process_group() if torch.cuda.device_count() > 1 else None
     torch.cuda.empty_cache()

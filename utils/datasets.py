@@ -119,6 +119,7 @@ class LoadImages:  # for inference
 
 class LoadWebcam:  # for inference
     def __init__(self, pipe=0, img_size=416):
+        print("loading webcam")
         self.img_size = img_size
 
         if pipe == '0':
