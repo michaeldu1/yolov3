@@ -14,10 +14,10 @@ files_list = ["labels/" + f for f in listdir("labels") if isfile(join("labels", 
 #     with open(filepath, 'r') as fin:
 #         data = fin.read().splitlines(True)
 #         print(data)
-    # with open(filepath, 'w+') as fout:
-    #     for line in data:
-    #         print("0 " + line)
-    #         fout.write("0 " + line)
+#     with open(filepath, 'w+') as fout:
+#         for line in data[1:]:
+#             print("0 " + line)
+#             fout.write("0 " + line)
 
 # normalize 
 for filepath in files_list:
@@ -32,10 +32,11 @@ for filepath in files_list:
         for i in range(len(data)):
             # data[i] = 
             res = ""
-            x_start, y_start, x_end, y_end = data[i][:-1].split()[1:]
+            print(data[i])
+            x_start, y_start, x_end, y_end = data[i][2:-1].split()
             x_center = (int(x_end)-int(x_start))/2
             y_center = (int(y_end)-int(y_start))/2
-            data[i] = "0 " + str(x_center/width) + " " + str(y_center/height) + " " + str(int(x_end)/width) + " " + str(int(y_end)/height) + "\n"
+            data[i] = "0 " + str(x_center/width) + " " + str(y_center/height) + " " + str(min(1,int(x_end)/width)) + " " + str(min(1,int(y_end)/height)) + "\n"
             # for j in range(1, len(data[i][:-1].split())):
                 
             #     if j % 2 == 1:
